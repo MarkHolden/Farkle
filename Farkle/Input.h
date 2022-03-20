@@ -12,8 +12,6 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
-
 class Input
 {
 public:
@@ -24,22 +22,22 @@ public:
     /// <param name="min">Minimum allowed value (inclusive).</param>
     /// <param name="max">Maximum allowed value (inclusive).</param>
     /// <returns>Parsed integer.</returns>
-    static int ReadInt(string prompt, int min, int max)
+    static int ReadInt(std::string prompt, int min, int max)
     {
         while (true) {
-            cout << prompt;
-            string input;
+            std::cout << prompt;
+            std::string input;
             int result;
-            cin >> input;
+            std::cin >> input;
             try {
                 result = stoi(input);
                 if (result >= min && result <= max) {
                     return result;
                 }
-                cout << "Input must be between " << min << " and " << max << endl;
+                std::cout << "Input must be between " << min << " and " << max << std::endl;
             }
-            catch (exception) {
-                cout << "Input could not be parsed. Try Again.\n";
+            catch (std::exception) {
+                std::cout << "Input could not be parsed. Try Again.\n";
             }
         }
     }
@@ -62,5 +60,27 @@ public:
     static int ReadInt()
     {
         return ReadInt(INT_MIN, INT_MAX);
+    }
+
+    /// <summary>
+    /// Displays a prompt and gets input from the console.
+    /// </summary>
+    /// <param name="prompt">Prompt text to display.</param>
+    /// <returns>Input string.</returns>
+    static std::string ReadString(std::string prompt)
+    {
+        std::cout << prompt;
+        return ReadString();
+    }
+
+    /// <summary>
+    /// Get input from the console.
+    /// </summary>
+    /// <returns>Input string.</returns>
+    static std::string ReadString()
+    {
+        std::string input;
+        std::cin >> input;
+        return input;
     }
 };

@@ -8,7 +8,7 @@
 //============================================================================
 
 #include <iostream>
-#include "input.h"
+#include "Input.h"
 #include "Game.h"
 #include "Rules.h"
 using namespace std;
@@ -17,28 +17,21 @@ using namespace std;
 /// Display the application menu.
 /// </summary>
 /// <param name="gameIsInProgress">If there is already a game in progress.</param>
-void DisplayMenu(bool gameIsInProgress);
+void DisplayMenu();
 
 /// <summary>
 /// Start a new Game.
 /// </summary>
 /// <param name="game"></param>
-void StartNew(Game* game);
-
-/// <summary>
-/// Continue an in progress game.
-/// </summary>
-/// <param name="game">The game that is in progress.</param>
-void Continue(Game* game);
+void Play();
 
 int main()
 {
     cout << "Welcome to Farkle\n\n";
-    Game* game = nullptr;
     int choice = -1;
     while (choice != 0)
     {
-        DisplayMenu(game != nullptr);
+        DisplayMenu();
         choice = Input::ReadInt("Enter Choice: ", 0, 3);
 
         switch (choice) {
@@ -47,50 +40,22 @@ int main()
             break;
 
         case 2:
-            StartNew(game);
-            break;
-
-        case 3:
-            Continue(game);
+            Play();
             break;
         }
     }
-
-    
-    
 }
 
-void Continue(Game* game)
+void Play()
 {
-    if (game != nullptr)
-    {
-        game->Play();
-    }
-    else
-    {
-        cout << "No game to Continue. Start a New Game.";
-    }
-}
-
-void StartNew(Game* game)
-{
-    if (game != nullptr)
-    {
-        delete game;
-    }
-
-    game = new Game();
+    Game* game = new Game();
     game->Play();
 }
 
-void DisplayMenu(bool gameIsInProgress)
+void DisplayMenu()
 {
     cout << "Menu:" << endl;
     cout << "  1. Display Farkle Rules" << endl;
     cout << "  2. New Farkle Game" << endl;
-    if (gameIsInProgress)
-    {
-        cout << "  3. Continue Farkle Game" << endl;
-    }
     cout << "  0. Exit" << endl;
 }

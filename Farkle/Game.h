@@ -6,6 +6,11 @@ class Game
 {
 public:
     /// <summary>
+    /// Default Constructor.
+    /// </summary>
+    Game();
+
+    /// <summary>
     /// Play the Game.
     /// </summary>
     void Play();
@@ -18,7 +23,12 @@ private:
     /// <summary>
     /// Vector of the Game's players.
     /// </summary>
-    std::vector<Player> players;
+    std::vector<Player> Players;
+
+    /// <summary>
+    /// Flag set when the game is over.
+    /// </summary>
+    bool GameOver = false;
 
     /// <summary>
     /// Anywhere between 2 and 86 players may play in one game. Any more
@@ -37,6 +47,16 @@ private:
     /// Display the Game play menu.
     /// </summary>
     void DisplayMenu();
+
+    /// <summary>
+    /// Play the next Round of the Game.
+    /// </summary>
+    void PlayRound();
+
+    /// <summary>
+    /// Display the Current score card.
+    /// </summary>
+    void DisplayScores();
 
     /// <summary>
     /// Add players. Only called when the game starts the first time.

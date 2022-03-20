@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Farkle.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.h" />
