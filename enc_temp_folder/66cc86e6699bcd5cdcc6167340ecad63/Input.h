@@ -90,7 +90,14 @@ public:
     static void PressEnter()
     {
         std::cout << "Press [Enter] to continue.";
+        std::string input;
+        std::cin >> input;
         std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
         std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+        std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n'); 
+        std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+        std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+        std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+        std::cin >> input;
     }
 };

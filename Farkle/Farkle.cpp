@@ -27,7 +27,26 @@ void Play();
 
 int main()
 {
-    cout << "Welcome to Farkle\n\n";
+    cout << "Welcome to Farkle\n\n"
+       "                                          \n"
+       "                 _____                    \n"
+       "                / \\'. \\                 \n"
+       "               / : \\___\\                \n"
+       "               \\' / .  / _____           \n"
+       "    _____       \\/____/ / .  /\\         \n"
+       "   / \\'. \\    _____    /____/..\\       \n"
+       "  / : \\___\\  / .  /\\   \\'  '\\  /     \n"
+       "  \\' / .  / /____/..\\   \\'__'\\/       \n"
+       "   \\/____/  \\'  '\\  /                  \n"
+       "             \\'__'\\/                    \n"
+       "        _____                             \n"
+       "       / .  /\\                           \n"
+       "      /____/..\\    _____                 \n"
+       "      \\'  '\\  /   / \\'. \\             \n"
+       "       \\'__'\\/   / : \\___\\            \n"
+       "                 \\' / .  /               \n"
+       "                  \\/____/                \n"
+        "\t\t\t\tOriginal art by valkyrie\n\n"; // https://www.asciiart.eu/miscellaneous/dice
     int choice = -1;
     while (choice != 0)
     {

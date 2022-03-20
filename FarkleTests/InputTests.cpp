@@ -22,7 +22,7 @@ namespace InputTests
 
 		TEST_METHOD(ReadInt_ShouldNotReadInt_OutsideMinAndMax)
 		{
-			std::string userEntry = "42\n999\n2";
+			std::string userEntry = "42\n-999\n2";
 			std::streambuf* orig = std::cin.rdbuf();
 			std::istringstream input(userEntry);
 			std::cin.rdbuf(input.rdbuf());

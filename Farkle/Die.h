@@ -4,16 +4,18 @@
 class Die
 {
 private:
-    bool Saved;
+    bool Saved = false;
 
-    int Value;
+    int Value = 0;
 
 public:
+    Die();
+
     bool IsSaved() { return Saved; }
 
     void Save() { Saved = true; }
 
-    void Roll() { Value = 1; }
+    void Roll() { Saved = false; Value = (rand() % 6) + 1; }
 
     int GetValue() { return Value; }
 

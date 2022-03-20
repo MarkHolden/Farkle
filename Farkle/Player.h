@@ -1,5 +1,8 @@
 #pragma once
+#include "Die.h"
+#include "ScoreOption.h"
 #include <string>
+#include <vector>
 
 class Player {
 public:
@@ -47,4 +50,12 @@ private:
     /// If the Player has already broken the 1000 points required to "get on the board".
     /// </summary>
     bool HasBrokenOneThousand;
+
+    void RollDice(std::vector<Die>& dice, bool rollAll = false);
+
+    std::vector<ScoreOption> CalculateScoreOptions(std::vector<Die>& dice);
+
+    bool AreAllDiceSaved(std::vector<Die>& dice);
+
+    void DisplayScoreOptionMenu(std::vector<ScoreOption>& options, bool canRollAgain, int runningTotal);
 };

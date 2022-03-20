@@ -94,7 +94,7 @@ vector<ScoreOption> Player::CalculateScoreOptions(vector<Die>& dice)
 
 void Player::DisplayScoreOptionMenu(vector<ScoreOption>& options, bool canRollAgain, int runningTotal)
 {
-    cout << "\nPlayer Options Menu:" << endl;
+    cout << "Player Options Menu:" << endl;
     int i;
     for (i = 0; i < options.size(); ++i)
     {
@@ -107,7 +107,7 @@ void Player::DisplayScoreOptionMenu(vector<ScoreOption>& options, bool canRollAg
         
         if (HasBrokenOneThousand || runningTotal >= 1000)
         {
-            cout << "  0. End Turn" << endl;
+            cout << "  0. End Turn";
         }
     }
 }
