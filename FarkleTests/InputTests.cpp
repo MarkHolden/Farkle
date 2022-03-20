@@ -22,7 +22,7 @@ namespace InputTests
 
 		TEST_METHOD(ReadInt_ShouldNotReadInt_OutsideMinAndMax)
 		{
-			string userEntry = "42\n999\n2";
+			std::string userEntry = "42\n999\n2";
 			std::streambuf* orig = std::cin.rdbuf();
 			std::istringstream input(userEntry);
 			std::cin.rdbuf(input.rdbuf());
@@ -34,7 +34,7 @@ namespace InputTests
 
 		TEST_METHOD(ReadInt_ShouldNotReadUnparsableInput)
 		{
-			string userEntry = "seven\nnope\n3";
+			std::string userEntry = "seven\nnope\n3";
 			std::streambuf* orig = std::cin.rdbuf();
 			std::istringstream input(userEntry);
 			std::cin.rdbuf(input.rdbuf());
