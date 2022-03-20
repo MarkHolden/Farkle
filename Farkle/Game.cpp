@@ -5,15 +5,6 @@
 
 using namespace std;
 
-Game::Game()
-{
-    for (int i = 0; i < 6; ++i)
-    {
-        Die die = {};
-        Dice.push_back(die);
-    }
-}
-
 void Game::Play()
 {
     if (Players.empty()) { AddPlayers(); }
@@ -53,6 +44,11 @@ void Game::DisplayMenu()
 
 void Game::PlayRound()
 {
+    for (Player p : Players)
+    {
+        cout << "Next up: " << p.GetName() << "!\n";
+        p.PlayRound();
+    }
 }
 
 void Game::DisplayScores()

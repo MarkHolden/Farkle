@@ -1,4 +1,4 @@
-#include "Die.h"
+#pragma once
 #include "Player.h"
 #include <vector>
 
@@ -6,20 +6,11 @@ class Game
 {
 public:
     /// <summary>
-    /// Default Constructor.
-    /// </summary>
-    Game();
-
-    /// <summary>
     /// Play the Game.
     /// </summary>
     void Play();
-private:
-    /// <summary>
-    /// The Game Dice.
-    /// </summary>
-    std::vector<Die> Dice;
 
+private:
     /// <summary>
     /// Vector of the Game's players.
     /// </summary>
@@ -32,8 +23,8 @@ private:
 
     /// <summary>
     /// Anywhere between 2 and 86 players may play in one game. Any more
-    /// than that, and it’s just way too long before you get to roll the
-    /// dice again, let alone the size of the room you’d need.
+    /// than that, and itï¿½s just way too long before you get to roll the
+    /// dice again, let alone the size of the room youï¿½d need.
     /// Source: https://officialfarklerules.com/rules-of-the-game/
     /// </summary>
     const int maxPlayers = 86;
