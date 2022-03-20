@@ -7,19 +7,24 @@ public:
     /// Default Constructor.
     /// </summary>
     /// <param name="name">The name of the player.</param>
-    Player(std::string name) : Name(name) {}
+    Player(std::string name) : Name(name), HasBrokenOneThousand(false), Score(0) {}
 
     /// <summary>
-    /// Add points for the round to a player's score.
+    /// Play the round.
     /// </summary>
-    /// <param name="points">Count of the points to add.</param>
-    void AddPoints(int points);
+    void PlayRound();
 
     /// <summary>
     /// Get the Current number of points a player has.
     /// </summary>
     /// <returns>Number of points.</returns>
     int GetScore() { return Score; }
+
+    /// <summary>
+    /// Get the Player's name.
+    /// </summary>
+    /// <returns>Player Name.</returns>
+    std::string GetName() { return Name; }
 
     /// <summary>
     /// Get a string representation of the Player.
@@ -31,10 +36,15 @@ private:
     /// <summary>
     /// Internal score counter.
     /// </summary>
-    int Score = 0;
+    int Score;
 
     /// <summary>
     /// Name of the player.
     /// </summary>
     std::string Name;
+
+    /// <summary>
+    /// If the Player has already broken the 1000 points required to "get on the board".
+    /// </summary>
+    bool HasBrokenOneThousand;
 };
