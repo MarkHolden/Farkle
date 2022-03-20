@@ -143,12 +143,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.h" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ScoreOption.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Die.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rules.h" />
+    <ClInclude Include="ScoreOption.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Farkle Rules.pdf" />
