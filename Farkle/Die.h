@@ -3,10 +3,19 @@
 
 class Die
 {
-public:
+private:
     bool Saved;
 
-    int Roll();
+    int Value;
+
+public:
+    bool IsSaved() { return Saved; }
+
+    void Save() { Saved = true; }
+
+    void Roll() { Value = 1; }
+
+    int GetValue() { return Value; }
 
     std::string ToString();
 
