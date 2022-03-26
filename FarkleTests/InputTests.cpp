@@ -91,9 +91,10 @@ namespace InputTests
         TEST_METHOD(ShouldContinue_ShouldPromptAgainWhenUnrecognizedCharacterIsEntered)
         {
             std::streambuf* orig = std::cin.rdbuf();
-            std::istringstream input("g\n42\ny");
+            std::istringstream input("ubuntu\n42\ny");
             std::cin.rdbuf(input.rdbuf());
             bool result = Input::ShouldContinue();
+            Assert::IsTrue(result);
             std::cin.rdbuf(orig);
         }
     };

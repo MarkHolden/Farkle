@@ -97,10 +97,11 @@ public:
     /// <summary>
     /// Prompts the user for if they would like to continue.
     /// </summary>
+    /// <param name="prompt">Prompt to display.</param>
     /// <returns>Bool of if the user would like to continue.</returns>
-    static bool ShouldContinue() {
+    static bool ShouldContinue(std::string prompt) {
         while (true) {
-            std::cout << "Would you like to continue? [Y/N] ";
+            std::cout << prompt << " [Y/N] ";
             char input;
             std::cin >> input;
             switch (input)
@@ -115,7 +116,16 @@ public:
                 break;
             }
 
+            std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
             std::cout << "Input must be either Y or N." << std::endl;
         }
+    }
+
+    /// <summary>
+    /// Prompts the user for if they would like to continue.
+    /// </summary>
+    /// <returns>Bool of if the user would like to continue.</returns>
+    static bool ShouldContinue() {
+        return ShouldContinue("Would you like to continue?");
     }
 };
