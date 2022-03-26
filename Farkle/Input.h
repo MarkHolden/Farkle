@@ -1,10 +1,10 @@
 //============================================================================
 // Name        : Input.h
 // Author      : Mark Holden
-// Date        : 3/19/2022
+// Date        : 3/26/2022
 // Course      : IT-312 Software Development with C++ .NET
 // Version     : 1.0
-// Description : Based on https://github.com/MarkHolden/produce-rearrangement-analyzer/blob/master/ProduceRearrangementAnalyzer/Menu.cpp
+// Description : Partly based on https://github.com/MarkHolden/produce-rearrangement-analyzer/blob/master/ProduceRearrangementAnalyzer/Menu.cpp
 //                  and https://github.com/splttingatms/EasyConsole/blob/master/EasyConsole/Input.cs
 //============================================================================
 
@@ -92,5 +92,30 @@ public:
         std::cout << "Press [Enter] to continue.";
         std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
         std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+    }
+
+    /// <summary>
+    /// Prompts the user for if they would like to continue.
+    /// </summary>
+    /// <returns>Bool of if the user would like to continue.</returns>
+    static bool ShouldContinue() {
+        while (true) {
+            std::cout << "Would you like to continue? [Y/N] ";
+            char input;
+            std::cin >> input;
+            switch (input)
+            {
+            case 'y':
+            case 'Y':
+                return true;
+            case 'n':
+            case 'N':
+                return false;
+            default:
+                break;
+            }
+
+            std::cout << "Input must be either Y or N." << std::endl;
+        }
     }
 };
