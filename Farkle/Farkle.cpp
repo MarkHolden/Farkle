@@ -24,7 +24,7 @@ void DisplayMenu();
 /// Start a new Game.
 /// </summary>
 /// <param name="game"></param>
-void Play();
+void NewGame();
 
 int main()
 {
@@ -60,16 +60,16 @@ int main()
             break;
 
         case 2:
-            Play();
+            NewGame();
             break;
         }
     }
 }
 
-void Play()
+void NewGame()
 {
-    Game* game = new Game();
-    game->Play();
+    Game game = Game();
+    game.Play();
 }
 
 void DisplayMenu()
