@@ -31,7 +31,9 @@ void Player::PlayRound()
 
         DisplayScoreOptionMenu(availbleScoreOptions, madeSelectionSinceRoll, runningTotal);
         
-        choice = Input::ReadInt("Enter Choice: ", 0, availbleScoreOptions.size() + 1);
+        int minimumChoice = (HasBrokenOneThousand || runningTotal >= 1000) ? 0 : 1; // Whether to allow input of 0 to end turn.
+        int maximumChoice = availbleScoreOptions.size() + (madeSelectionSinceRoll ? 1 : 0); // Whether to allow the user to roll again.
+        choice = Input::ReadInt("Enter Choice: ", minimumChoice, maximumChoice);
         if (choice > 0 && choice <= availbleScoreOptions.size())
         {
             ScoreOption selection = availbleScoreOptions.at(choice - 1);
@@ -49,6 +51,9 @@ void Player::PlayRound()
             madeSelectionSinceRoll = false;
         }
     }
+
+    Score += runningTotal;
+    HasBrokenOneThousand = true;
 }
 
 void Player::RollDice(vector<Die>& dice, bool rollAll)
@@ -58,9 +63,10 @@ void Player::RollDice(vector<Die>& dice, bool rollAll)
         if (rollAll || !d.IsSaved())
         {
             d.Roll();
-            d.Display();
         }
     }
+    
+    Die::Display(dice);
 }
 
 vector<ScoreOption> Player::CalculateScoreOptions(vector<Die>& dice)
