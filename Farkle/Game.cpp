@@ -1,3 +1,4 @@
+#pragma once
 #include "Game.h"
 #include "Input.h"
 #include "Player.h"
@@ -44,7 +45,7 @@ void Game::DisplayMenu()
 
 void Game::PlayRound()
 {
-    for (Player p : Players)
+    for (Player &p : Players)
     {
         cout << "Next up: " << p.GetName() << "!\n";
         p.PlayRound();
