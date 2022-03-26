@@ -26,9 +26,7 @@ void Game::Play()
             break;
 
         case 0:
-            string confirmation = Input::ReadString("Exiting will lose game progress. Are you sure? [Y/N] ");
-            if (confirmation != "Y" && confirmation != "y")
-            {
+            if (!Input::ShouldContinue("Exiting will lose game progress. Are you sure?")) {
                 choice = -1;
             }
         }
