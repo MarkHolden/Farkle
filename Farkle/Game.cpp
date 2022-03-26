@@ -45,7 +45,7 @@ void Game::PlayRound()
 {
     for (Player &p : Players)
     {
-        cout << "Next up: " << p.GetName() << "!\n";
+        cout << endl << "Next up: " << p.GetName() << "!\n";
         p.PlayRound();
     }
 }
