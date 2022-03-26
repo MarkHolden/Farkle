@@ -7,6 +7,7 @@
 // Description : Entry Point and Main Menu for Farkle
 //============================================================================
 
+#pragma once
 #include <iostream>
 #include "Input.h"
 #include "Game.h"

@@ -1,3 +1,4 @@
+#pragma once
 #include "ScoreOption.h"
 
 using namespace std;
