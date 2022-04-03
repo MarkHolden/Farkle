@@ -24,11 +24,10 @@ public:
     /// <returns>Parsed integer.</returns>
     static int ReadInt(std::string prompt, int min, int max)
     {
+        int result;
+        std::string input;
         while (true) {
-            std::cout << prompt;
-            std::string input;
-            int result;
-            std::cin >> input;
+            input = ReadString(prompt);
             try {
                 result = stoi(input);
                 if (result >= min && result <= max) {

@@ -24,7 +24,7 @@ private:
     /// <summary>
     /// Anywhere between 2 and 86 players may play in one game. Any more
     /// than that, and it�s just way too long before you get to roll the
-    /// dice again, let alone the size of the room you�d need.
+    /// dice again, let alone the size of the room you'd need.
     /// Source: https://officialfarklerules.com/rules-of-the-game/
     /// </summary>
     const int maxPlayers = 86;
