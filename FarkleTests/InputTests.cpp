@@ -7,10 +7,10 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace InputTests
 {
-    TEST_CLASS(InputTests)
+    TEST_CLASS(ReadInt)
     {
     public:
-        TEST_METHOD(ReadInt_ShouldReadInt_BetweenMinAndMax)
+        TEST_METHOD(ShouldReadInt_BetweenMinAndMax)
         {
             // cin wizardry from here: https://stackoverflow.com/questions/14550187/how-to-put-data-in-cin-from-string
             std::streambuf* orig = std::cin.rdbuf();
@@ -22,7 +22,7 @@ namespace InputTests
             std::cin.rdbuf(orig);
         }
 
-        TEST_METHOD(ReadInt_ShouldNotReadInt_OutsideMinAndMax)
+        TEST_METHOD(ShouldNotReadInt_OutsideMinAndMax)
         {
             std::string userEntry = "42\n-999\n2";
             std::streambuf* orig = std::cin.rdbuf();
@@ -34,7 +34,7 @@ namespace InputTests
             std::cin.rdbuf(orig);
         }
 
-        TEST_METHOD(ReadInt_ShouldNotReadUnparsableInput)
+        TEST_METHOD(ShouldNotReadUnparsableInput)
         {
             std::string userEntry = "seven\nnope\n3";
             std::streambuf* orig = std::cin.rdbuf();
@@ -45,8 +45,12 @@ namespace InputTests
             Assert::AreEqual(3, result);
             std::cin.rdbuf(orig);
         }
-
-        TEST_METHOD(ReadString_ShouldReturnTheStringEntered)
+    };
+    
+    TEST_CLASS(ReadString)
+    {
+    public:
+        TEST_METHOD(ShouldReturnTheStringEntered)
         {
             std::string userEntry = "a;sldkjfa;irth";
             std::streambuf* orig = std::cin.rdbuf();
@@ -58,7 +62,11 @@ namespace InputTests
             std::cin.rdbuf(orig);
         }
 
-        TEST_METHOD(ShouldContinue_ShouldReturnTrueWhenYIsEntered)
+    };
+
+    TEST_CLASS(ShouldContinue)
+    {
+        TEST_METHOD(ShouldReturnTrueWhenYIsEntered)
         {
             std::streambuf* orig = std::cin.rdbuf();
             std::string inputs[] = { "y", "Y" };
@@ -73,7 +81,7 @@ namespace InputTests
             std::cin.rdbuf(orig);
         }
 
-        TEST_METHOD(ShouldContinue_ShouldReturnFalseWhenNIsEntered)
+        TEST_METHOD(ShouldReturnFalseWhenNIsEntered)
         {
             std::streambuf* orig = std::cin.rdbuf();
             std::string inputs[] = { "n", "N" };
@@ -89,7 +97,7 @@ namespace InputTests
             std::cin.rdbuf(orig);
         }
 
-        TEST_METHOD(ShouldContinue_ShouldPromptAgainWhenUnrecognizedCharacterIsEntered)
+        TEST_METHOD(ShouldPromptAgainWhenUnrecognizedCharacterIsEntered)
         {
             std::streambuf* orig = std::cin.rdbuf();
             std::istringstream input("ubuntu\n42\ny");
