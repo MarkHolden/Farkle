@@ -1,6 +1,7 @@
 #pragma once
 #include "Die.h"
 #include "ScoreOption.h"
+#include "Input.h"
 #include <string>
 #include <vector>
 
@@ -10,7 +11,9 @@ public:
     /// Default Constructor.
     /// </summary>
     /// <param name="name">The name of the player.</param>
-    Player(std::string name) : Name(name), HasBrokenOneThousand(false), Score(0) {}
+    Player() : HasBrokenOneThousand(false), Score(0) {
+        Name = Input::ReadString("Enter your name: ");
+    }
 
     /// <summary>
     /// Play the round.

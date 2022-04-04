@@ -67,7 +67,8 @@ void Game::AddPlayers()
 
     for (int i = 0; i < playerCount; ++i)
     {
-        Player player = { "Player " + to_string(i + 1) };
+        cout << "Player " << i + 1 << ", ";
+        Player player;
         Players.push_back(player);
     }
 }
