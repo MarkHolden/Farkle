@@ -15,8 +15,14 @@
 class Die
 {
 private:
+    /// <summary>
+    /// Value representing if this die is saved or not.
+    /// </summary>
     bool Saved = false;
 
+    /// <summary>
+    /// Face value of the die.
+    /// </summary>
     int Value = 0;
 
     /// <summary>
@@ -32,8 +38,15 @@ public:
     /// </summary>
     Die();
 
+    /// <summary>
+    /// Value representing if this die is saved or not.
+    /// </summary>
+    /// <returns>A value representing if this die is saved or not.</returns>
     bool IsSaved() { return Saved; }
 
+    /// <summary>
+    /// Set the die's saved value to true.
+    /// </summary>
     void Save() { Saved = true; }
 
     /// <summary>
@@ -52,10 +65,10 @@ public:
     /// </summary>
     /// <param name="dice">Dice to display.</param>
     static void Display(std::vector<Die> dice) {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; ++i) { // For each of the 4 rows in the ASCII art dice.
             for (Die die : dice) {
                 if (!die.IsSaved()) {
-                    die.Display(i);
+                    die.Display(i); // Display the ith row.
                 }
             }
 

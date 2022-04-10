@@ -54,11 +54,32 @@ private:
     /// </summary>
     bool HasBrokenOneThousand;
 
+    /// <summary>
+    /// Rolls Dice in the vector if they have not been saved.
+    /// </summary>
+    /// <param name="dice">Vector of dice to roll.</param>
+    /// <param name="rollAll">If this is true, all dice are rolled whether they are saved or not.</param>
     void RollDice(std::vector<Die>& dice, bool rollAll = false);
 
+    /// <summary>
+    /// Based on the current roll, not including saved dice, create a vector of the score options.
+    /// </summary>
+    /// <param name="dice">Vector of dice which have been rolled.</param>
+    /// <returns>A vector of ScoreOptions.</returns>
     std::vector<ScoreOption> CalculateScoreOptions(std::vector<Die>& dice);
 
+    /// <summary>
+    /// Are all the dice saved?
+    /// </summary>
+    /// <param name="dice">Vector of dice which have been rolled.</param>
+    /// <returns>Bool of if all dice are saved or not.</returns>
     bool AreAllDiceSaved(std::vector<Die>& dice);
 
+    /// <summary>
+    /// Output the player's score option menu.
+    /// </summary>
+    /// <param name="dice">Vector of dice which have been rolled.</param>
+    /// <param name="canRollAgain">If the player has already saved at least one die and can roll again.</param>
+    /// <param name="runningTotal">The current number of points the player has accrued this turn.</param>
     void DisplayScoreOptionMenu(std::vector<ScoreOption>& options, bool canRollAgain, int runningTotal);
 };
