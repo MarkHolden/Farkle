@@ -33,6 +33,9 @@
     <ClCompile Include="Die.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h">
@@ -58,5 +61,10 @@
     <None Include="..\IT 312 Final Project Guidelines and Rubric.pdf">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\FarkleRules.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
