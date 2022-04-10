@@ -18,11 +18,6 @@ Die::Die()
     srand(time(0));  // Initialize random number generator.
 }
 
-string Die::ToString()
-{
-    return std::string();
-}
-
 void Die::Display(int row)
 {
     if (row == 0) {

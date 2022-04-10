@@ -62,6 +62,4 @@ public:
             std::cout << std::endl;
         }
     }
-
-    std::string ToString();
 };
