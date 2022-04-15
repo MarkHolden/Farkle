@@ -9,65 +9,61 @@ using namespace std;
 const bool RollAll = true;
 
 void Player::PlayRound() {
-    vector<Die> dice(6);
-    vector<ScoreOption> selected(0);
-    int runningTotal = 0;
-
-    RollDice(dice);
-    bool madeSelectionSinceRoll = false;
+    RunningTotal = 0;
+    RollDice();
+    SavedDiceSinceRoll = false;
 
     int choice = -1;
     while (choice != 0) {
-        vector<ScoreOption> availbleScoreOptions = CalculateScoreOptions(dice);
-        if (availbleScoreOptions.empty() && madeSelectionSinceRoll == false) {
+        vector<ScoreOption> availableScoreOptions = CalculateScoreOptions();
+        if (availableScoreOptions.empty() && SavedDiceSinceRoll == false) {
             cout << "A Farkle has occurred!" << endl;
             Input::PressEnter();
             return;
         }
 
-        DisplayScoreOptionMenu(availbleScoreOptions, madeSelectionSinceRoll, runningTotal, Die::CountUnsavedDice(dice));
-        
-        choice = Input::ReadInt("Enter Choice: ", GetMinimumChoice(runningTotal), GetMaximumChoice(availbleScoreOptions, madeSelectionSinceRoll));
-        if (choice > 0 && choice <= availbleScoreOptions.size()) {
-            ScoreOption selection = availbleScoreOptions.at(static_cast<vector<ScoreOption, allocator<ScoreOption>>::size_type>(choice) - 1);
-            selected.push_back(selection);
-            selection.SaveDice(dice);
-            runningTotal += selection.GetValue();
-            cout << "The current amount of points for this round is " << runningTotal << endl;
+        auto availableOptionsCount = (int)availableScoreOptions.size();
+        DisplayScoreOptionMenu(availableScoreOptions);
+        choice = Input::ReadInt("Enter Choice: ", GetMinimumChoice(), GetMaximumChoice(availableOptionsCount));
+        if (choice > 0 && choice <= availableOptionsCount) {
+            ScoreOption selection = availableScoreOptions.at(static_cast<vector<ScoreOption, allocator<ScoreOption>>::size_type>(choice) - 1);
+            selection.SaveDice(Dice);
+            RunningTotal += selection.GetValue();
+            cout << "The current amount of points for this round is " << RunningTotal << endl;
             cout << "Your existing points balance is " << Score << endl;
-            madeSelectionSinceRoll = true;
+            SavedDiceSinceRoll = true;
         } 
-        else if (choice == availbleScoreOptions.size() + 1) {
-            RollDice(dice, Die::AreAllDiceSaved(dice));
-            madeSelectionSinceRoll = false;
+        else if (choice == availableOptionsCount + 1) {
+            RollDice();
+            SavedDiceSinceRoll = false;
         }
     }
 
-    Score += runningTotal;
+    Score += RunningTotal;
     HasBrokenOneThousand = true;
 }
 
-void Player::RollDice(vector<Die>& dice, bool rollAll) const {
-    for (Die& d : dice) {
-        if (rollAll || !d.IsSaved()) {
+void Player::RollDice() {
+    for (Die& d : Dice) {
+        if (Die::AreAllDiceSaved(Dice) || !d.IsSaved()) {
             d.Roll();
         }
     }
     
-    Die::Display(dice);
+    Die::Display(Dice);
 }
 
-void Player::SetCounts(vector<Die> const& dice, int* counts) const {
-    for (Die d : dice) {
+void Player::SetCounts(int* counts) const {
+    for (Die d : Dice) {
         if (!d.IsSaved()) {
             ++counts[d.GetValue()];
         }
     }
 }
 
-vector<ScoreOption> Player::CalculateScoreOptions(vector<Die> const& dice) const {
+vector<ScoreOption> Player::CalculateScoreOptions() const {
     int counts[7]{};
-    SetCounts(dice, counts);
+    SetCounts(counts);
     vector<ScoreOption> options(0);
 
     for (int i = 1; i <= 6; ++i) {
@@ -84,28 +80,36 @@ vector<ScoreOption> Player::CalculateScoreOptions(vector<Die> const& dice) const
     return options;
 }
 
-void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options, bool canRollAgain, int runningTotal, int unrolledDiceCount) const {
+void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options) const {
     cout << "\nPlayer Options Menu:" << endl;
     int i;
     for (i = 0; i < options.size(); ++i) {
         cout << "  " << to_string(i + 1) << ". " << options.at(i).ToString() << endl;
     }
 
-    if (canRollAgain) {
+    if (SavedDiceSinceRoll) {
+        int unrolledDiceCount = Die::CountUnsavedDice(Dice);
         cout << "  " << to_string(i + 1) << ". Roll " << (unrolledDiceCount == 0 ? "all" : to_string(unrolledDiceCount)) << " Dice" << endl;
         
-        if (HasBrokenOneThousand || runningTotal >= 1000) {
+        if (HasBrokenOneThousand || RunningTotal >= 1000) {
             cout << "  0. End Turn" << endl;
         }
     }
 }
 
-int Player::GetMaximumChoice(vector<ScoreOption> const& options, bool madeSelectionSinceRoll) const
-{
-    return (int)options.size() + (madeSelectionSinceRoll ? 1 : 0);
+int Player::GetMaximumChoice(int const& optionsCount) const {
+    return optionsCount + (SavedDiceSinceRoll ? 1 : 0);
 }
 
-int Player::GetMinimumChoice(int const& runningTotal) const
-{
-    return (HasBrokenOneThousand || runningTotal >= 1000) ? 0 : 1; // Whether to allow input of 0 to end turn.
+int Player::GetMinimumChoice() const {
+    return (HasBrokenOneThousand || RunningTotal >= 1000) ? 0 : 1;
+}
+
+void Player::HandleOptionSelected(vector<ScoreOption> const& availableScoreOptions, int const& choice) {
+    ScoreOption selection = availableScoreOptions.at(static_cast<vector<ScoreOption, allocator<ScoreOption>>::size_type>(choice) - 1);
+    selection.SaveDice(Dice);
+    RunningTotal += selection.GetValue();
+    cout << "The current amount of points for this round is " << RunningTotal << endl;
+    cout << "Your existing points balance is " << Score << endl;
+    SavedDiceSinceRoll = true;
 }

@@ -53,48 +53,53 @@ private:
     bool HasBrokenOneThousand = false;
 
     /// <summary>
+    /// The running total of the player's score for this round only.
+    /// </summary>
+    int RunningTotal = 0;
+
+    /// <summary>
+    /// Whether the player has saved dice since the previous roll.
+    /// </summary>
+    bool SavedDiceSinceRoll = false;
+
+    std::vector<Die> Dice = std::vector<Die>(6);
+
+    /// <summary>
     /// Rolls Dice in the vector if they have not been saved.
     /// </summary>
-    /// <param name="dice">Vector of dice to roll.</param>
-    /// <param name="rollAll">If this is true, all dice are rolled whether they are saved or not.</param>
-    void RollDice(std::vector<Die>& dice, bool rollAll = false) const;
+    void RollDice();
 
     /// <summary>
     /// Based on the current roll, not including saved dice, create a vector of the score options.
     /// </summary>
-    /// <param name="dice">Vector of dice which have been rolled.</param>
     /// <returns>A vector of ScoreOptions.</returns>
-    std::vector<ScoreOption> CalculateScoreOptions(std::vector<Die> const& dice) const;
+    std::vector<ScoreOption> CalculateScoreOptions() const;
 
     /// <summary>
     /// Gets the counts of each face value.
     /// <para>Includes 7 elements so the index is the same as the face value (ignore index 0).</para>
     /// </summary>
-    /// <param name="dice">Dice vector for which to return counts.</param>
     /// <returns>A 7 element vector of face value counts.</returns>
-    void SetCounts(std::vector<Die> const& dice, int * counts) const;
+    void SetCounts(int * counts) const;
 
     /// <summary>
     /// Output the player's score option menu.
     /// </summary>
-    /// <param name="dice">Vector of dice which have been rolled.</param>
-    /// <param name="canRollAgain">If the player has already saved at least one die and can roll again.</param>
-    /// <param name="runningTotal">The current number of points the player has accrued this turn.</param>
-    /// <param name="unrolledDiceCount">The current number of dice that have not been rolled.</param>
-    void DisplayScoreOptionMenu(std::vector<ScoreOption> const& options, bool canRollAgain, int runningTotal, int unrolledDiceCount) const;
+    /// <param name="options">Vector ScoreOptions available to the player.</param>
+    void DisplayScoreOptionMenu(std::vector<ScoreOption> const& options) const;
 
     /// <summary>
     /// Get the maximum number the user should be allowed to select.
     /// </summary>
-    /// <param name="options">Vector of the options the user has available.</param>
-    /// <param name="madeSelectionSinceRoll">If the user has already made a selection since the last roll (allows the user to roll again).</param>
+    /// <param name="optionsCount">The number of options the user has available.</param>
     /// <returns>Maximum choice.</returns>
-    int GetMaximumChoice(std::vector<ScoreOption> const& options, bool madeSelectionSinceRoll) const;
+    int GetMaximumChoice(int const& optionsCount) const;
 
     /// <summary>
     /// Get the minimum number the user should be allowed to select.
     /// </summary>
-    /// <param name="runningTotal">Current number of points accrued this turn.</param>
     /// <returns>0 if the user can end their turn, otherwise 1.</returns>
-    int GetMinimumChoice(int const& runningTotal) const;
+    int GetMinimumChoice() const;
+
+    void HandleOptionSelected(std::vector<ScoreOption> const& availableScoreOptions, int const& choice);
 };
