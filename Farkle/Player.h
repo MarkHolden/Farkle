@@ -69,13 +69,6 @@ private:
     std::vector<ScoreOption> CalculateScoreOptions(std::vector<Die> const& dice) const;
 
     /// <summary>
-    /// Are all the dice saved?
-    /// </summary>
-    /// <param name="dice">Vector of dice which have been rolled.</param>
-    /// <returns>Bool of if all dice are saved or not.</returns>
-    bool AreAllDiceSaved(std::vector<Die> const& dice) const;
-
-    /// <summary>
     /// Output the player's score option menu.
     /// </summary>
     /// <param name="dice">Vector of dice which have been rolled.</param>

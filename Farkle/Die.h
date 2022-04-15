@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 class Die {
 private:
@@ -73,5 +74,14 @@ public:
 
             std::cout << std::endl;
         }
+    }
+
+    /// <summary>
+    /// Are all the dice saved?
+    /// </summary>
+    /// <param name="dice">Vector of dice.</param>
+    /// <returns>Bool of if all dice are saved or not.</returns>
+    static bool AreAllDiceSaved(std::vector<Die> const& dice) {
+        return all_of(dice.begin(), dice.end(), [](Die d) { return d.IsSaved(); });
     }
 };

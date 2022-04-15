@@ -1,7 +1,4 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <algorithm>
 #include "Player.h"
 #include "Die.h"
 #include "ScoreOption.h"
@@ -44,7 +41,7 @@ void Player::PlayRound() {
             madeSelectionSinceRoll = true;
         } 
         else if (choice == availbleScoreOptions.size() + 1) {
-            RollDice(dice, AreAllDiceSaved(dice));
+            RollDice(dice, Die::AreAllDiceSaved(dice));
             madeSelectionSinceRoll = false;
         }
     }
@@ -100,8 +97,4 @@ void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options, bool can
             cout << "  0. End Turn" << endl;
         }
     }
-}
-
-bool Player::AreAllDiceSaved(vector<Die> const& dice) const {
-    return all_of(dice.begin(), dice.end(), [](Die d) { return d.IsSaved(); });
 }
