@@ -10,7 +10,6 @@ public:
     /// <summary>
     /// Default Constructor.
     /// </summary>
-    /// <param name="name">The name of the player.</param>
     Player() {
         Name = Input::ReadString("Enter your name: ");
     }
@@ -68,10 +67,19 @@ private:
     std::vector<ScoreOption> CalculateScoreOptions(std::vector<Die> const& dice) const;
 
     /// <summary>
+    /// Gets the counts of each face value.
+    /// <para>Includes 7 elements so the index is the same as the face value (ignore index 0).</para>
+    /// </summary>
+    /// <param name="dice">Dice vector for which to return counts.</param>
+    /// <returns>A 7 element vector of face value counts.</returns>
+    void SetCounts(std::vector<Die> const& dice, int * counts) const;
+
+    /// <summary>
     /// Output the player's score option menu.
     /// </summary>
     /// <param name="dice">Vector of dice which have been rolled.</param>
     /// <param name="canRollAgain">If the player has already saved at least one die and can roll again.</param>
     /// <param name="runningTotal">The current number of points the player has accrued this turn.</param>
+    /// <param name="unrolledDiceCount">The current number of dice that have not been rolled.</param>
     void DisplayScoreOptionMenu(std::vector<ScoreOption> const& options, bool canRollAgain, int runningTotal, int unrolledDiceCount) const;
 };

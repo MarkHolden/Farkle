@@ -59,22 +59,26 @@ void Player::RollDice(vector<Die>& dice, bool rollAll) const {
     Die::Display(dice);
 }
 
-vector<ScoreOption> Player::CalculateScoreOptions(vector<Die> const& dice) const {
-    vector<ScoreOption> options(0);
-    vector<int> counts = { 0, 0, 0, 0, 0, 0, 0 }; // 7 indices so the index is the same as the face value (ignore index 0).
+void Player::SetCounts(vector<Die> const& dice, int* counts) const {
     for (Die d : dice) {
         if (!d.IsSaved()) {
-            ++counts.at(d.GetValue());
+            ++counts[d.GetValue()];
         }
     }
+}
+
+vector<ScoreOption> Player::CalculateScoreOptions(vector<Die> const& dice) const {
+    int counts[7]{};
+    SetCounts(dice, counts);
+    vector<ScoreOption> options(0);
 
     for (int i = 1; i <= 6; ++i) {
-        if (counts.at(i) >= 3) {
+        if (counts[i] >= 3) {
             ScoreOption a(i, 3);
             options.push_back(a);
         }
 
-        if ((i == 1 || i == 5) && counts.at(i) >= 1) {
+        if ((i == 1 || i == 5) && counts[i] >= 1) {
             ScoreOption a(i, 1);
             options.push_back(a);
         }
