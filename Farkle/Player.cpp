@@ -25,7 +25,7 @@ void Player::PlayRound() {
             return;
         }
 
-        DisplayScoreOptionMenu(availbleScoreOptions, madeSelectionSinceRoll, runningTotal);
+        DisplayScoreOptionMenu(availbleScoreOptions, madeSelectionSinceRoll, runningTotal, Die::CountUnsavedDice(dice));
         
         int minimumChoice = (HasBrokenOneThousand || runningTotal >= 1000) ? 0 : 1; // Whether to allow input of 0 to end turn.
         int maximumChoice = (int)availbleScoreOptions.size() + (madeSelectionSinceRoll ? 1 : 0); // Whether to allow the user to roll again.
@@ -83,7 +83,7 @@ vector<ScoreOption> Player::CalculateScoreOptions(vector<Die> const& dice) const
     return options;
 }
 
-void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options, bool canRollAgain, int runningTotal) const {
+void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options, bool canRollAgain, int runningTotal, int unrolledDiceCount) const {
     cout << "\nPlayer Options Menu:" << endl;
     int i;
     for (i = 0; i < options.size(); ++i) {
@@ -91,7 +91,7 @@ void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options, bool can
     }
 
     if (canRollAgain) {
-        cout << "  " << to_string(i + 1) << ".Roll Dice" << endl;
+        cout << "  " << to_string(i + 1) << ". Roll " << unrolledDiceCount << " Dice" << endl;
         
         if (HasBrokenOneThousand || runningTotal >= 1000) {
             cout << "  0. End Turn" << endl;

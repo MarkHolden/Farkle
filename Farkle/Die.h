@@ -84,4 +84,13 @@ public:
     static bool AreAllDiceSaved(std::vector<Die> const& dice) {
         return all_of(dice.begin(), dice.end(), [](Die d) { return d.IsSaved(); });
     }
+
+    /// <summary>
+    /// Returns the number of dice in the vector that are not saved.
+    /// </summary>
+    /// <param name="dice">Vector of dice.</param>
+    /// <returns>Count of unsaved dice.</returns>
+    static int CountUnsavedDice(std::vector<Die> const& dice) {
+        return (int)(count_if(dice.begin(), dice.end(), [](Die d) { return !d.IsSaved(); }));
+    }
 };

@@ -74,5 +74,5 @@ private:
     /// <param name="dice">Vector of dice which have been rolled.</param>
     /// <param name="canRollAgain">If the player has already saved at least one die and can roll again.</param>
     /// <param name="runningTotal">The current number of points the player has accrued this turn.</param>
-    void DisplayScoreOptionMenu(std::vector<ScoreOption> const& options, bool canRollAgain, int runningTotal) const;
+    void DisplayScoreOptionMenu(std::vector<ScoreOption> const& options, bool canRollAgain, int runningTotal, int unrolledDiceCount) const;
 };
