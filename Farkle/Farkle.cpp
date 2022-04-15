@@ -25,6 +25,10 @@ void DisplayMenu();
 /// </summary>
 void NewGame();
 
+/// <summary>
+/// Entry point for the application.
+/// </summary>
+/// <returns>Exit code.</returns>
 int main() {
     cout << "Welcome to Farkle\n\n"
        "                                          \n"
@@ -63,6 +67,7 @@ int main() {
             break;
         }
     }
+    return 0;
 }
 
 void NewGame() {
