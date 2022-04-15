@@ -90,7 +90,7 @@ void Player::DisplayScoreOptionMenu(vector<ScoreOption> const& options, bool can
     }
 
     if (canRollAgain) {
-        cout << "  " << to_string(i + 1) << ". Roll " << unrolledDiceCount << " Dice" << endl;
+        cout << "  " << to_string(i + 1) << ". Roll " << (unrolledDiceCount == 0 ? "all" : to_string(unrolledDiceCount)) << " Dice" << endl;
         
         if (HasBrokenOneThousand || runningTotal >= 1000) {
             cout << "  0. End Turn" << endl;
