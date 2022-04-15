@@ -9,7 +9,6 @@
 
 #pragma once
 #include "Die.h"
-#include <iostream>
 
 using namespace std;
 

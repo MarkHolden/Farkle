@@ -9,9 +9,10 @@
 
 #pragma once
 #include <iostream>
-#include "Input.h"
 #include "Game.h"
+#include "Input.h"
 #include "Rules.h"
+
 using namespace std;
 
 /// <summary>

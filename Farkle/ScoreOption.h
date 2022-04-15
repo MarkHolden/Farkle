@@ -34,6 +34,7 @@ public:
     /// </summary>
     /// <param name="dice">Vector of dice from which to chose.</param>
     void SaveDice(std::vector<Die>& dice) const;
+
 private:
     /// <summary>
     /// Number of dice in this ScoreOption.

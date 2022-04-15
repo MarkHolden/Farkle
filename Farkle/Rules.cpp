@@ -1,8 +1,8 @@
 #pragma once
-#include "Rules.h"
 #include <fstream>
-#include <string>
 #include <iostream>
+#include <string>
+#include "Rules.h"
 
 using namespace std;
 

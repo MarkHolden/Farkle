@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 #include "Die.h"
-#include "ScoreOption.h"
 #include "Input.h"
+#include "ScoreOption.h"
 
 class Player {
 public:

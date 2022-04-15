@@ -1,8 +1,8 @@
 #pragma once
-#include "Player.h"
 #include "Die.h"
-#include "ScoreOption.h"
 #include "Input.h"
+#include "Player.h"
+#include "ScoreOption.h"
 
 using namespace std;
 

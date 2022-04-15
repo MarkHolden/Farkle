@@ -1,8 +1,8 @@
 #pragma once
+#include <vector>
 #include "Game.h"
 #include "Input.h"
 #include "Player.h"
-#include <vector>
 
 using namespace std;
 

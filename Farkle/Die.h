@@ -8,10 +8,9 @@
 //============================================================================
 
 #pragma once
-#include <string>
-#include <vector>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <vector>
 
 class Die {
 private:

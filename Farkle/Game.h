@@ -1,7 +1,7 @@
 #pragma once
-#include "Player.h"
-#include <vector>
 #include <algorithm>
+#include <vector>
+#include "Player.h"
 
 class Game {
 public:

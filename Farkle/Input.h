@@ -9,8 +9,8 @@
 //============================================================================
 
 #pragma once
-#include <string>
 #include <iostream>
+#include <string>
 
 class Input {
 public:
