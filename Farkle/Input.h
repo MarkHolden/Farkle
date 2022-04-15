@@ -12,8 +12,7 @@
 #include <string>
 #include <iostream>
 
-class Input
-{
+class Input {
 public:
     /// <summary>
     /// Displays a prompt and reads an integer from the console, verifying it is between min and max (inclusive).
@@ -22,8 +21,7 @@ public:
     /// <param name="min">Minimum allowed value (inclusive).</param>
     /// <param name="max">Maximum allowed value (inclusive).</param>
     /// <returns>Parsed integer.</returns>
-    static int ReadInt(std::string prompt, int min, int max)
-    {
+    static int ReadInt(std::string const& prompt, int min, int max) {
         int result;
         std::string input;
         while (true) {
@@ -35,8 +33,11 @@ public:
                 }
                 std::cout << "Input must be between " << min << " and " << max << std::endl;
             }
-            catch (std::exception) {
-                std::cout << "Input could not be parsed. Try Again.\n";
+            catch (std::invalid_argument) {
+                std::cout << "Input could not be parsed. Please try again.\n";
+            }
+            catch (std::out_of_range) {
+                std::cout << "Input was out of range. Please try again.\n";
             }
         }
     }
@@ -47,8 +48,7 @@ public:
     /// <param name="min">Minimum allowed value (inclusive).</param>
     /// <param name="max">Maximum allowed value (inclusive).</param>
     /// <returns>Parsed integer.</returns>
-    static int ReadInt(int min, int max)
-    {
+    static int ReadInt(int min, int max) {
         return ReadInt("", min, max);
     }
 
@@ -56,8 +56,7 @@ public:
     /// Reads and returns an integer from the console.
     /// </summary>
     /// <returns>Parsed integer.</returns>
-    static int ReadInt()
-    {
+    static int ReadInt() {
         return ReadInt(INT_MIN, INT_MAX);
     }
 
@@ -66,8 +65,7 @@ public:
     /// </summary>
     /// <param name="prompt">Prompt text to display.</param>
     /// <returns>Input string.</returns>
-    static std::string ReadString(std::string prompt)
-    {
+    static std::string ReadString(std::string const& prompt) {
         std::cout << prompt;
         return ReadString();
     }
@@ -76,8 +74,7 @@ public:
     /// Get input from the console.
     /// </summary>
     /// <returns>Input string.</returns>
-    static std::string ReadString()
-    {
+    static std::string ReadString() {
         std::string input;
         std::cin >> input;
         return input;
@@ -86,8 +83,7 @@ public:
     /// <summary>
     /// Waits for the [Enter] key to be pressed.
     /// </summary>
-    static void PressEnter()
-    {
+    static void PressEnter() {
         std::cout << "Press [Enter] to continue.";
         std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
         std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
@@ -98,13 +94,12 @@ public:
     /// </summary>
     /// <param name="prompt">Prompt to display.</param>
     /// <returns>Bool of if the user would like to continue.</returns>
-    static bool ShouldContinue(std::string prompt) {
+    static bool ShouldContinue(std::string const& prompt) {
         while (true) {
             std::cout << prompt << " [Y/N] ";
             char input;
             std::cin >> input;
-            switch (input)
-            {
+            switch (input) {
             case 'y':
             case 'Y':
                 return true;

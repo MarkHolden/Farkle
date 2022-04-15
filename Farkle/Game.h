@@ -2,8 +2,7 @@
 #include "Player.h"
 #include <vector>
 
-class Game
-{
+class Game {
 public:
     /// <summary>
     /// Play the Game.
@@ -37,7 +36,7 @@ private:
     /// <summary>
     /// Display the Game play menu.
     /// </summary>
-    void DisplayMenu();
+    void DisplayMenu() const;
 
     /// <summary>
     /// Play the next Round of the Game.
@@ -47,7 +46,7 @@ private:
     /// <summary>
     /// Display the Current score card.
     /// </summary>
-    void DisplayScores();
+    void DisplayScores() const;
 
     /// <summary>
     /// Add players. Only called when the game starts the first time.

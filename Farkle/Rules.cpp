@@ -11,8 +11,7 @@ void Rules::Display() {
     ifstream rulesFile;
     rulesFile.open("..\\FarkleRules.txt");
     if (rulesFile.is_open()) {
-        while (getline(rulesFile, line))
-        {
+        while (getline(rulesFile, line)) {
             cout << line << endl;
         }
         rulesFile.close();

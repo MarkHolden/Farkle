@@ -3,14 +3,8 @@
 #include <vector>
 #include "Die.h"
 
-class ScoreOption
-{
+class ScoreOption {
 public:
-    /// <summary>
-    /// Default Constructor.
-    /// </summary>
-    ScoreOption();
-
     /// <summary>
     /// SCoreOption constructor.
     /// </summary>
@@ -22,28 +16,28 @@ public:
     /// Gets a string Representation of the ScoreOption.
     /// </summary>
     /// <returns>String representation of the score option.</returns>
-    std::string ToString();
+    std::string ToString() const;
 
     /// <summary>
     /// Get the total score value of this ScoreOption.
     /// </summary>
     /// <returns>SCore value.</returns>
-    int GetValue();
+    int GetValue() const;
 
     /// <summary>
     /// Save the dice specific to this ScoreOption.
     /// </summary>
     /// <param name="dice">Vector of dice from which to chose.</param>
-    void SaveDice(std::vector<Die>& dice);
+    void SaveDice(std::vector<Die>& dice) const;
 private:
     /// <summary>
     /// Number of dice in this ScoreOption.
     /// </summary>
-    int DieCount;
+    int DieCount = 0;
     
     /// <summary>
     /// Face value of the dice in this ScoreOption.
     /// </summary>
-    int DieFaceValue;
+    int DieFaceValue = 0;
 };
 

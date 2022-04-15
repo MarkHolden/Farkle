@@ -13,21 +13,18 @@
 
 using namespace std;
 
-Die::Die()
-{
-    srand(time(0));  // Initialize random number generator.
+Die::Die() {
+    srand((int)time(nullptr)); // Initialize random number generator.
 }
 
-void Die::Display(int row)
-{
+void Die::Display(int row) const {
     if (row == 0) {
         cout << " ___ \t";
     }
     else {
         switch (Value) {
         case 1:
-            switch (row)
-            {
+            switch (row) {
             case 1: cout << "|   |\t";
                 break;
             case 2: cout << "| o |\t";
@@ -39,8 +36,7 @@ void Die::Display(int row)
             }
             break;
         case 2:
-            switch (row)
-            {
+            switch (row) {
             case 1: cout << "|  o|\t";
                 break;
             case 2: cout << "|   |\t";
@@ -52,8 +48,7 @@ void Die::Display(int row)
             }
             break;
         case 3:
-            switch (row)
-            {
+            switch (row) {
             case 1: cout << "|  o|\t";
                 break;
             case 2: cout << "| o |\t";
@@ -65,8 +60,7 @@ void Die::Display(int row)
             }
             break;
         case 4:
-            switch (row)
-            {
+            switch (row) {
             case 1: cout << "|o o|\t";
                 break;
             case 2: cout << "|   |\t";
@@ -78,8 +72,7 @@ void Die::Display(int row)
             }
             break;
         case 5:
-            switch (row)
-            {
+            switch (row) {
             case 1: cout << "|o o|\t";
                 break;
             case 2: cout << "| o |\t";
@@ -91,8 +84,7 @@ void Die::Display(int row)
             }
             break;
         case 6:
-            switch (row)
-            {
+            switch (row) {
             case 1:
             case 2: cout << "|o o|\t";
                 break;
@@ -101,6 +93,8 @@ void Die::Display(int row)
             default:
                 break;
             }
+            break;
+        default:
             break;
         }
     }

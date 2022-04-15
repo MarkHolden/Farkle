@@ -1,7 +1,6 @@
 #pragma once
 
-class Rules
-{
+class Rules {
 public:
     /// <summary>
     /// Display the rules of Farkle.

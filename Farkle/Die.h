@@ -12,8 +12,7 @@
 #include <vector>
 #include <iostream>
 
-class Die
-{
+class Die {
 private:
     /// <summary>
     /// Value representing if this die is saved or not.
@@ -30,7 +29,7 @@ private:
     /// <para>This allows Dice to be rendered beside each other.</para>
     /// </summary>
     /// <param name="row">Row to output.</param>
-    void Display(int row);
+    void Display(int row) const;
 
 public:
     /// <summary>
@@ -42,7 +41,7 @@ public:
     /// Value representing if this die is saved or not.
     /// </summary>
     /// <returns>A value representing if this die is saved or not.</returns>
-    bool IsSaved() { return Saved; }
+    bool IsSaved() const { return Saved; }
 
     /// <summary>
     /// Set the die's saved value to true.
@@ -58,13 +57,13 @@ public:
     /// Get the current value.
     /// </summary>
     /// <returns>Current value.</returns>
-    int GetValue() { return Value; }
+    int GetValue() const { return Value; }
 
     /// <summary>
     /// Display ASCII art of the current values of all dice in a vector.
     /// </summary>
     /// <param name="dice">Dice to display.</param>
-    static void Display(std::vector<Die> dice) {
+    static void Display(std::vector<Die> const& dice) {
         for (int i = 0; i < 4; ++i) { // For each of the 4 rows in the ASCII art dice.
             for (Die die : dice) {
                 if (!die.IsSaved()) {

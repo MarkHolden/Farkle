@@ -17,17 +17,14 @@ using namespace std;
 /// <summary>
 /// Display the application menu.
 /// </summary>
-/// <param name="gameIsInProgress">If there is already a game in progress.</param>
 void DisplayMenu();
 
 /// <summary>
 /// Start a new Game.
 /// </summary>
-/// <param name="game"></param>
 void NewGame();
 
-int main()
-{
+int main() {
     cout << "Welcome to Farkle\n\n"
        "                                          \n"
        "                 _____                    \n"
@@ -49,8 +46,7 @@ int main()
        "                  \\/____/                \n"
         "\t\t\t\tOriginal art by valkyrie\n\n"; // https://www.asciiart.eu/miscellaneous/dice
     int choice = -1;
-    while (choice != 0)
-    {
+    while (choice != 0)     {
         DisplayMenu();
         choice = Input::ReadInt("Enter Choice: ", 0, 3);
 
@@ -62,18 +58,18 @@ int main()
         case 2:
             NewGame();
             break;
+        default:
+            break;
         }
     }
 }
 
-void NewGame()
-{
-    Game game = Game();
+void NewGame() {
+    auto game = Game();
     game.Play();
 }
 
-void DisplayMenu()
-{
+void DisplayMenu() {
     cout << "Menu:" << endl;
     cout << "  1. Display Farkle Rules" << endl;
     cout << "  2. New Farkle Game" << endl;
