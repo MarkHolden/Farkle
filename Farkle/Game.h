@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include <vector>
+#include <algorithm>
 
 class Game {
 public:
@@ -9,16 +10,19 @@ public:
     /// </summary>
     void Play();
 
+    /// <summary>
+    /// Are any players over ten thousand?
+    /// </summary>
+    /// <returns>Bool of if any players have broken 10,000 or not.</returns>
+    bool AreAnyPlayersOverTenThousand() {
+        return any_of(Players.begin(), Players.end(), [](Player p) { return p.HasBrokenTenThousand(); });
+    }
+
 private:
     /// <summary>
     /// Vector of the Game's players.
     /// </summary>
     std::vector<Player> Players;
-
-    /// <summary>
-    /// Flag set when the game is over.
-    /// </summary>
-    bool GameOver = false;
 
     /// <summary>
     /// Anywhere between 2 and 86 players may play in one game. Any more
@@ -36,12 +40,17 @@ private:
     /// <summary>
     /// Display the Game play menu.
     /// </summary>
-    void DisplayMenu() const;
+    void DisplayMenu(bool isFinalRound) const;
 
     /// <summary>
-    /// Play the next Round of the Game.
+    /// Play the next round of the Game.
     /// </summary>
     void PlayRound();
+
+    /// <summary>
+    /// Play the final round of the Game.
+    /// </summary>
+    void PlayFinalRound();
 
     /// <summary>
     /// Display the Current score card.

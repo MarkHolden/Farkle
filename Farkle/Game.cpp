@@ -10,12 +10,18 @@ void Game::Play() {
     if (Players.empty()) { AddPlayers(); }
 
     int choice = -1;
+    bool isFinalRound = false;
     while (choice != 0) {
-        DisplayMenu();
+        DisplayMenu(isFinalRound);
         choice = Input::ReadInt("Enter Choice: ", 0, 2);
 
         switch (choice) {
         case 1:
+            if (isFinalRound) {
+                PlayFinalRound();
+                return;
+            }
+            
             PlayRound();
             break;
 
@@ -30,21 +36,41 @@ void Game::Play() {
         default:
             break;
         }
+        isFinalRound = AreAnyPlayersOverTenThousand();
     }
 }
 
-void Game::DisplayMenu() const {
+void Game::DisplayMenu(bool isFinalRound) const {
     cout << "Game Menu:" << endl;
-    cout << "  1. Play the next Round" << endl;
+    cout << "  1. Play the " << (isFinalRound ? "final" : "next") << " Round" << endl;
     cout << "  2. View Scores" << endl;
     cout << "  0. Exit" << endl;
 }
 
 void Game::PlayRound() {
-    for (Player &p : Players) {
+    for (Player& p : Players) {
         cout << endl << "Next up: " << p.GetName() << "!\n";
         p.PlayRound();
+        if (p.HasBrokenTenThousand()) {
+            cout << p.GetName() << " has accrued more than ten thousand points!\n";
+            cout << "In the final round, every player except " << p.GetName() << " will have a chance to beat the score of " << p.GetScore() << endl;
+            return;
+        }
     }
+}
+
+void Game::PlayFinalRound() {
+    for (Player& p : Players) {
+        if (!p.HasBrokenTenThousand()) { // If you are the one that broke 10k, you don't get an additional turn in the final round.
+            cout << endl << "Next up: " << p.GetName() << "!\n";
+            p.PlayRound();
+        }
+    }
+
+    cout << "The final scores are:\n";
+    DisplayScores();
+    Player winner = *max_element(Players.begin(), Players.end(), [](Player const& left, Player const& right) { return left.GetScore() < right.GetScore(); });
+    cout << "The winner is " << winner.GetName() << "!\n";
 }
 
 void Game::DisplayScores() const {
