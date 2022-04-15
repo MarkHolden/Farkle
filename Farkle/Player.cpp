@@ -31,7 +31,7 @@ void Player::PlayRound() {
         int maximumChoice = (int)availbleScoreOptions.size() + (madeSelectionSinceRoll ? 1 : 0); // Whether to allow the user to roll again.
         choice = Input::ReadInt("Enter Choice: ", minimumChoice, maximumChoice);
         if (choice > 0 && choice <= availbleScoreOptions.size()) {
-            ScoreOption selection = availbleScoreOptions.at(choice - 1);
+            ScoreOption selection = availbleScoreOptions.at(static_cast<vector<ScoreOption, allocator<ScoreOption>>::size_type>(choice) - 1);
             selected.push_back(selection);
             selection.SaveDice(dice);
             runningTotal += selection.GetValue();
