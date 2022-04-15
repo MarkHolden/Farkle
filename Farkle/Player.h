@@ -82,4 +82,19 @@ private:
     /// <param name="runningTotal">The current number of points the player has accrued this turn.</param>
     /// <param name="unrolledDiceCount">The current number of dice that have not been rolled.</param>
     void DisplayScoreOptionMenu(std::vector<ScoreOption> const& options, bool canRollAgain, int runningTotal, int unrolledDiceCount) const;
+
+    /// <summary>
+    /// Get the maximum number the user should be allowed to select.
+    /// </summary>
+    /// <param name="options">Vector of the options the user has available.</param>
+    /// <param name="madeSelectionSinceRoll">If the user has already made a selection since the last roll (allows the user to roll again).</param>
+    /// <returns>Maximum choice.</returns>
+    int GetMaximumChoice(std::vector<ScoreOption> const& options, bool madeSelectionSinceRoll) const;
+
+    /// <summary>
+    /// Get the minimum number the user should be allowed to select.
+    /// </summary>
+    /// <param name="runningTotal">Current number of points accrued this turn.</param>
+    /// <returns>0 if the user can end their turn, otherwise 1.</returns>
+    int GetMinimumChoice(int const& runningTotal) const;
 };
