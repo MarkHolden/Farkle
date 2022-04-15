@@ -6,7 +6,12 @@
 class ScoreOption {
 public:
     /// <summary>
-    /// SCoreOption constructor.
+    /// Default constructor.
+    /// </summary>
+    ScoreOption() = default;
+
+    /// <summary>
+    /// ScoreOption constructor.
     /// </summary>
     /// <param name="faceValue">Face value of the dice for this score option.</param>
     /// <param name="dieCount">Count of the dice for this score option.</param>
