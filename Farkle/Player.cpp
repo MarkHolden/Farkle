@@ -37,7 +37,6 @@ void Player::PlayRound() {
             runningTotal += selection.GetValue();
             cout << "The current amount of points for this round is " << runningTotal << endl;
             cout << "Your existing points balance is " << Score << endl;
-            //cout << "You could end your turn with " << Score + runningTotal << " points right now.\n";
             madeSelectionSinceRoll = true;
         } 
         else if (choice == availbleScoreOptions.size() + 1) {
@@ -62,20 +61,20 @@ void Player::RollDice(vector<Die>& dice, bool rollAll) const {
 
 vector<ScoreOption> Player::CalculateScoreOptions(vector<Die> const& dice) const {
     vector<ScoreOption> options(0);
-    int counts[7] = { 0 }; // use 7 so the index is the same as the face value (ignore index 0).
+    vector<int> counts = { 0, 0, 0, 0, 0, 0, 0 }; // 7 indices so the index is the same as the face value (ignore index 0).
     for (Die d : dice) {
         if (!d.IsSaved()) {
-            ++counts[d.GetValue()];
+            ++counts.at(d.GetValue());
         }
     }
 
     for (int i = 1; i <= 6; ++i) {
-        if (counts[i] >= 3) {
+        if (counts.at(i) >= 3) {
             ScoreOption a(i, 3);
             options.push_back(a);
         }
 
-        if ((i == 1 || i == 5) && counts[i] >= 1) {
+        if ((i == 1 || i == 5) && counts.at(i) >= 1) {
             ScoreOption a(i, 1);
             options.push_back(a);
         }
