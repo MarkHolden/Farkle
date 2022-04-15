@@ -33,12 +33,6 @@ public:
     std::string GetName() const { return Name; }
 
     /// <summary>
-    /// Get a string representation of the Player.
-    /// </summary>
-    /// <returns>String representation of the Player.</returns>
-    std::string ToString() const { return Name + "\t|\t" + std::to_string(Score); }
-
-    /// <summary>
     /// If the Player has broken the 10,000 points required to enter the final round.
     /// </summary>
     bool HasBrokenTenThousand() const { return Score >= 10000; }

@@ -77,7 +77,7 @@ void Game::DisplayScores() const {
     cout << "\tScore Card\n";
     cout << "_______________________________\n";
     for (Player p : Players) {
-        cout << p.ToString() << endl;
+        cout << p.GetName() << "\t|\t" << p.GetScore() << endl;
     }
     cout << endl;
 }
