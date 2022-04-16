@@ -67,7 +67,8 @@ private:
     /// <summary>
     /// Rolls Dice in the vector if they have not been saved.
     /// </summary>
-    void RollDice();
+    /// <param name="rollAll">Overrides saved dice and rolls them all anyway.</param>
+    void RollDice(bool rollAll = false);
 
     /// <summary>
     /// Based on the current roll, not including saved dice, create a vector of the score options.
@@ -101,5 +102,27 @@ private:
     /// <returns>0 if the user can end their turn, otherwise 1.</returns>
     int GetMinimumChoice() const;
 
-    void HandleOptionSelected(std::vector<ScoreOption> const& availableScoreOptions, int const& choice);
+    /// <summary>
+    /// Handles the user selection of a score option to save dice.
+    /// </summary>
+    /// <param name="availableScoreOptions">ScoreOptions available.</param>
+    /// <param name="choice">The user's choice.</param>
+    void HandleSaveDiceOptionSelected(std::vector<ScoreOption> const& availableScoreOptions, int const& choice);
+
+    /// <summary>
+    /// Checks if a Farkle has Occurred.
+    /// </summary>
+    /// <param name="options">Score options from which to determine if a Farkle has occured.</param>
+    /// <returns>True if a Farkle has occurred, else false.</returns>
+    bool FarkleOccurred(std::vector<ScoreOption> const& options) const;
+
+    /// <summary>
+    /// Resets variables for the beginning of a round and rolls the dice.
+    /// </summary>
+    void InitializeRound();
+
+    /// <summary>
+    /// Handles the end of turn actions.
+    /// </summary>
+    void EndTurn();
 };

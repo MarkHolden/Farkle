@@ -9,47 +9,36 @@ using namespace std;
 const bool RollAll = true;
 
 void Player::PlayRound() {
-    RunningTotal = 0;
-    RollDice();
-    SavedDiceSinceRoll = false;
+    InitializeRound();
 
     int choice = -1;
     while (choice != 0) {
         vector<ScoreOption> availableScoreOptions = CalculateScoreOptions();
-        if (availableScoreOptions.empty() && SavedDiceSinceRoll == false) {
-            cout << "A Farkle has occurred!" << endl;
-            Input::PressEnter();
-            return;
-        }
+        if (FarkleOccurred(availableScoreOptions)) { return; }
 
         auto availableOptionsCount = (int)availableScoreOptions.size();
         DisplayScoreOptionMenu(availableScoreOptions);
         choice = Input::ReadInt("Enter Choice: ", GetMinimumChoice(), GetMaximumChoice(availableOptionsCount));
         if (choice > 0 && choice <= availableOptionsCount) {
-            ScoreOption selection = availableScoreOptions.at(static_cast<vector<ScoreOption, allocator<ScoreOption>>::size_type>(choice) - 1);
-            selection.SaveDice(Dice);
-            RunningTotal += selection.GetValue();
-            cout << "The current amount of points for this round is " << RunningTotal << endl;
-            cout << "Your existing points balance is " << Score << endl;
-            SavedDiceSinceRoll = true;
+            HandleSaveDiceOptionSelected(availableScoreOptions, choice);
         } 
         else if (choice == availableOptionsCount + 1) {
             RollDice();
-            SavedDiceSinceRoll = false;
         }
     }
 
-    Score += RunningTotal;
-    HasBrokenOneThousand = true;
+    EndTurn();
 }
 
-void Player::RollDice() {
+void Player::RollDice(bool rollAll) {
+    bool rollAllValue = rollAll || Die::AreAllDiceSaved(Dice);
     for (Die& d : Dice) {
-        if (Die::AreAllDiceSaved(Dice) || !d.IsSaved()) {
+        if (rollAllValue || !d.IsSaved()) {
             d.Roll();
         }
     }
     
+    SavedDiceSinceRoll = false;
     Die::Display(Dice);
 }
 
@@ -105,11 +94,31 @@ int Player::GetMinimumChoice() const {
     return (HasBrokenOneThousand || RunningTotal >= 1000) ? 0 : 1;
 }
 
-void Player::HandleOptionSelected(vector<ScoreOption> const& availableScoreOptions, int const& choice) {
+void Player::HandleSaveDiceOptionSelected(vector<ScoreOption> const& availableScoreOptions, int const& choice) {
     ScoreOption selection = availableScoreOptions.at(static_cast<vector<ScoreOption, allocator<ScoreOption>>::size_type>(choice) - 1);
     selection.SaveDice(Dice);
     RunningTotal += selection.GetValue();
     cout << "The current amount of points for this round is " << RunningTotal << endl;
     cout << "Your existing points balance is " << Score << endl;
     SavedDiceSinceRoll = true;
+}
+
+bool Player::FarkleOccurred(vector<ScoreOption> const& options) const {
+    if (options.empty() && SavedDiceSinceRoll == false) {
+        cout << "A Farkle has occurred!" << endl;
+        Input::PressEnter();
+        return true;
+    }
+    return false;
+}
+
+void Player::InitializeRound() {
+    RunningTotal = 0;
+    RollDice(RollAll);
+    SavedDiceSinceRoll = false;
+}
+
+void Player::EndTurn() {
+    Score += RunningTotal;
+    HasBrokenOneThousand = true;
 }
