@@ -26,7 +26,7 @@ public:
     /// <summary>
     /// Get the total score value of this ScoreOption.
     /// </summary>
-    /// <returns>SCore value.</returns>
+    /// <returns>Score value.</returns>
     int GetValue() const;
 
     /// <summary>

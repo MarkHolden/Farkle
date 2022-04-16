@@ -62,6 +62,9 @@ private:
     /// </summary>
     bool SavedDiceSinceRoll = false;
 
+    /// <summary>
+    /// The Player's Dice to roll.
+    /// </summary>
     std::vector<Die> Dice = std::vector<Die>(6);
 
     /// <summary>
@@ -112,7 +115,7 @@ private:
     /// <summary>
     /// Checks if a Farkle has Occurred.
     /// </summary>
-    /// <param name="options">Score options from which to determine if a Farkle has occured.</param>
+    /// <param name="options">Score options from which to determine if a Farkle has occurred.</param>
     /// <returns>True if a Farkle has occurred, else false.</returns>
     bool FarkleOccurred(std::vector<ScoreOption> const& options) const;
 
