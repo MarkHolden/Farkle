@@ -49,7 +49,6 @@ void Game::DisplayMenu(bool isFinalRound) const {
 
 void Game::PlayRound() {
     for (Player& p : Players) {
-        cout << endl << "Next up: " << p.GetName() << "!\n";
         p.PlayRound();
         if (p.HasBrokenTenThousand()) {
             cout << p.GetName() << " has accrued more than ten thousand points!\n";
@@ -62,7 +61,6 @@ void Game::PlayRound() {
 void Game::PlayFinalRound() {
     for (Player& p : Players) {
         if (!p.HasBrokenTenThousand()) { // If you are the one that broke 10k, you don't get an additional turn in the final round.
-            cout << endl << "Next up: " << p.GetName() << "!\n";
             p.PlayRound();
         }
     }

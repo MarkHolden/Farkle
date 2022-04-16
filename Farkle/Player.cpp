@@ -113,6 +113,7 @@ bool Player::FarkleOccurred(vector<ScoreOption> const& options) const {
 }
 
 void Player::InitializeRound() {
+    cout << endl << "Next up: " << Name << "!\n";
     RunningTotal = 0;
     RollDice(RollAll);
     SavedDiceSinceRoll = false;
